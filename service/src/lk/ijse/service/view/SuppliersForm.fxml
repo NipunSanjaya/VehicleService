@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="paneEmployee" prefHeight="521.0" prefWidth="1091.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.service.controller.SuppliersFormController">
+   <children>
+      <Label layoutX="415.0" layoutY="29.0" prefHeight="53.0" prefWidth="267.0" text="Suppliers Form" textFill="#180fd9">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="48.0" layoutY="129.0" text="Supplier ID" />
+      <TextField fx:id="txtSupId" layoutX="184.0" layoutY="124.0" onAction="#txtSupIdOnAction" prefHeight="31.0" prefWidth="250.0" promptText="S001" />
+      <Label layoutX="48.0" layoutY="233.0" text="Address" />
+      <TextField fx:id="txtAddress" layoutX="184.0" layoutY="228.0" onAction="#txtAddressOnAction" prefHeight="31.0" prefWidth="250.0" promptText="No 22/ udugama, galle" />
+      <Label layoutX="48.0" layoutY="181.0" text="Name" />
+      <TextField fx:id="txtName" layoutX="184.0" layoutY="176.0" onAction="#txtNameOnAction" prefHeight="31.0" prefWidth="250.0" promptText="Kapila" />
+      <Label layoutX="48.0" layoutY="288.0" text="Contact" />
+      <TextField fx:id="txtContact" layoutX="184.0" layoutY="283.0" onAction="#txtContactOnAction" prefHeight="31.0" prefWidth="250.0" promptText="07* *** ****" />
+      <Label layoutX="48.0" layoutY="344.0" text="Email" />
+      <TableView fx:id="tblSuppliers" layoutX="462.0" layoutY="124.0" prefHeight="321.0" prefWidth="606.0">
+        <columns>
+          <TableColumn fx:id="tblSupId" prefWidth="75.0" text="Sup ID" />
+          <TableColumn fx:id="tblName" prefWidth="90.0" text="Name" />
+            <TableColumn fx:id="tblAddress" prefWidth="145.0" text="Address" />
+            <TableColumn fx:id="tblContact" prefWidth="99.0" text="Contact" />
+            <TableColumn fx:id="tblEmail" prefWidth="196.0" text="Email" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txtEmail" layoutX="184.0" layoutY="339.0" onAction="#txtEmailOnAction" prefHeight="31.0" prefWidth="250.0" promptText="abcd**@gamail.com" />
+      <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="48.0" layoutY="407.0" onAction="#btnAddOnAction" prefHeight="38.0" prefWidth="83.0" style="-fx-background-color: #000080;" text="Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <ripplerFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#6c12da" />
+                  <Stop color="#e80505" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </ripplerFill>
+      </JFXButton>
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="150.0" layoutY="407.0" onAction="#btnDeleteOnAction" prefHeight="38.0" prefWidth="83.0" style="-fx-background-color: #ff0000;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <ripplerFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#6c12da" />
+                  <Stop color="#e80505" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </ripplerFill>
+      </JFXButton>
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="249.0" layoutY="407.0" onAction="#btnUpdateOnAction" prefHeight="38.0" prefWidth="83.0" style="-fx-background-color: #00FF00;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <ripplerFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#6c12da" />
+                  <Stop color="#e80505" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </ripplerFill>
+      </JFXButton>
+      <JFXButton fx:id="btnClear" buttonType="RAISED" layoutX="351.0" layoutY="407.0" onAction="#btnClearOnAction" prefHeight="38.0" prefWidth="83.0" style="-fx-background-color: #00FFFF;" text="Clear" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <ripplerFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#6c12da" />
+                  <Stop color="#e80505" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </ripplerFill>
+      </JFXButton>
+   </children>
+</AnchorPane>

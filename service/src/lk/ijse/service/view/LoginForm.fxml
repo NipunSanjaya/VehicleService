@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="LoginForm" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.service.controller.LoginFormController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/logo/car-wash-detailing-station.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="402.0" layoutY="181.0" opacity="0.88" prefHeight="310.0" prefWidth="458.0" style="-fx-background-radius: 40; -fx-background-color: white;">
+         <children>
+            <JFXTextField fx:id="txtUserName" focusColor="BLACK" labelFloat="true" layoutX="211.0" layoutY="64.0" prefHeight="31.0" prefWidth="215.0" promptText="User Name" unFocusColor="BLACK">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXPasswordField fx:id="txtPassword" focusColor="BLACK" labelFloat="true" layoutX="211.0" layoutY="151.0" prefHeight="31.0" prefWidth="215.0" promptText="Password" unFocusColor="BLACK">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXPasswordField>
+            <JFXButton fx:id="btnLogin" layoutX="202.0" layoutY="226.0" onAction="#btnLoginOnAction" prefHeight="38.0" prefWidth="225.0" ripplerFill="BLACK" style="-fx-background-radius: 30; -fx-background-color: #2d55cd;" text="LOGIN" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <ImageView fitHeight="92.0" fitWidth="106.0" layoutX="33.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo/user.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="172.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo/account.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="172.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo/lock.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lblUserName" alignment="CENTER_RIGHT" layoutX="211.0" layoutY="108.0" prefHeight="21.0" prefWidth="215.0" textFill="RED">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPassword" alignment="CENTER_RIGHT" layoutX="211.0" layoutY="195.0" prefHeight="21.0" prefWidth="215.0" textFill="RED">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="19.0" layoutY="170.0" prefHeight="51.0" prefWidth="121.0" text="SIGN IN">
+               <font>
+                  <Font name="Britannic Bold" size="35.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnForgottenPassword" alignment="CENTER_RIGHT" layoutX="295.0" layoutY="265.0" onAction="#btnForgottenPasswordOnAction" prefHeight="31.0" prefWidth="132.0" ripplerFill="BLACK" text="Forgotten Password ?" textFill="#2416a4">
+               <font>
+                  <Font size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
