@@ -7,16 +7,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.service.model.CustomerModel;
-import lk.ijse.service.model.UserModel;
-import lk.ijse.service.model.VehicleModel;
-import lk.ijse.service.to.User;
-import lk.ijse.service.to.Vehicle;
+import lk.ijse.service.bo.BOFactory;
+import lk.ijse.service.bo.BOType;
+import lk.ijse.service.bo.custom.CustomerBO;
+import lk.ijse.service.bo.custom.VehicleBO;
+import lk.ijse.service.dao.custom.CustomerDAO;
+import lk.ijse.service.dao.custom.impl.VehicleDAOImpl;
+import lk.ijse.service.dto.CustomerDTO;
+import lk.ijse.service.dto.VehicleDTO;
+import lk.ijse.service.entity.Vehicle;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import static lk.ijse.service.model.VehicleModel.add;
 
 public class VehicleFormController {
 
@@ -67,6 +70,9 @@ public class VehicleFormController {
     @FXML
     private JFXButton btnClear;
 
+    VehicleBO vehicleBO = (VehicleBO) BOFactory.getBoFactory().getBO(BOType.VEHICLE);
+    CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOType.CUSTOMER);
+
     private ObservableList<String> vehicle_types = FXCollections.observableArrayList();
     private ObservableList<String> cus_ids = FXCollections.observableArrayList();
 
@@ -82,12 +88,13 @@ public class VehicleFormController {
     }
 
     public void lordCusIds() throws SQLException, ClassNotFoundException {
-        ArrayList<String> customerIds = CustomerModel.lordIds();
-
-        for (String ids : customerIds) {
-            cus_ids.add(ids);
+        ArrayList<CustomerDTO> customerIds = customerBO.lordIds();
+        for (CustomerDTO c: customerIds
+             ) {
+            cmbCusId.getItems().add(c.getCus_id());
         }
-        cmbCusId.setItems(cus_ids);
+
+
     }
 
     @FXML
@@ -101,9 +108,9 @@ public class VehicleFormController {
             new Alert(Alert.AlertType.WARNING,"Some Data Fields Are Empty...!").show();
 
         }else {
-            Vehicle vehicle = new Vehicle(veh_id,cus_id,type,veh_name);
+            //Vehicle vehicle = new Vehicle(veh_id,cus_id,type,veh_name);
 
-            boolean isAdded = add(vehicle);
+            boolean isAdded = vehicleBO.save(new VehicleDTO(veh_id,cus_id,type,veh_name));
 
             if (isAdded) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Vehicle Added ").show();
@@ -132,9 +139,9 @@ public class VehicleFormController {
             new Alert(Alert.AlertType.WARNING,"Some Data Fields Are Empty...!").show();
 
         }else {
-            Vehicle vehicle = new Vehicle(veh_id);
+            //Vehicle vehicle = new Vehicle(veh_id);
 
-            boolean isDeleted = VehicleModel.delete(vehicle);
+            boolean isDeleted = vehicleBO.delete(veh_id);
 
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Vehicle Deleted ").show();
@@ -157,9 +164,9 @@ public class VehicleFormController {
             new Alert(Alert.AlertType.WARNING,"Some Data Fields Are Empty...!").show();
 
         }else {
-            Vehicle vehicle = new Vehicle(veh_id,cus_id,type,veh_name);
+            //Vehicle vehicle = new Vehicle(veh_id,cus_id,type,veh_name);
 
-            boolean isUpdated = VehicleModel.update(vehicle);
+            boolean isUpdated = vehicleBO.update(new VehicleDTO(veh_id,cus_id,type,veh_name));
 
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Vehicle Updated ").show();
@@ -188,7 +195,7 @@ public class VehicleFormController {
     void txtVehicleNumOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String veh_id = txtVehicleNum.getText();
 
-        Vehicle vehicle = VehicleModel.search(veh_id);
+        Vehicle vehicle = vehicleBO.search(veh_id);
 
         if (vehicle != null){
             filData(vehicle);

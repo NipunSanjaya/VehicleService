@@ -1,6 +1,6 @@
 package lk.ijse.service.model;
 
-import lk.ijse.service.util.CrudUtil;
+import lk.ijse.service.dao.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

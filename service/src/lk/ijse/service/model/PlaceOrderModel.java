@@ -1,5 +1,6 @@
 package lk.ijse.service.model;
 
+import lk.ijse.service.dao.custom.impl.ItemDAOImpl;
 import lk.ijse.service.db.DBConnection;
 import lk.ijse.service.to.PlaceOrder;
 import lk.ijse.service.to.Sup_Order;
@@ -16,7 +17,8 @@ public class PlaceOrderModel {
             DBConnection.getInstance().getConnection().setAutoCommit(false);
             boolean isOrderAdded = SupOrderModel.save(new Sup_Order(placeOrder.getOrder_id(), placeOrder.getSup_id(), LocalDate.now()));
             if (isOrderAdded) {
-                boolean isUpdated = ItemModel.updateQty(placeOrder.getOrderDetails());
+                //boolean isUpdated = ItemDAOImpl.updateQty(placeOrder.getOrderDetails());
+                boolean isUpdated = true;
                 if (isUpdated) {
                     boolean isOrderDetailAdded = OrderDetailModel.saveOrderDetails(placeOrder.getOrderDetails());
                     if (isOrderDetailAdded) {
@@ -34,5 +36,4 @@ public class PlaceOrderModel {
             DBConnection.getInstance().getConnection().setAutoCommit(true);
         }
     }
-
 }

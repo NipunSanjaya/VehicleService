@@ -3,7 +3,6 @@ package lk.ijse.service.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import com.sun.istack.internal.NotNull;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,18 +13,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.service.AppInitializer;
-import lk.ijse.service.model.UserModel;
-import lk.ijse.service.to.User;
-import lk.ijse.service.util.CrudUtil;
-import lk.ijse.service.util.Navigation;
-import lk.ijse.service.util.Routes;
+import lk.ijse.service.dao.CrudUtil;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import static lk.ijse.service.model.UserModel.search;
 
 public class LoginFormController {
 

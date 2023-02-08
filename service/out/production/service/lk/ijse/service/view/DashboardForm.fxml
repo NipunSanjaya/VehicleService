@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="dashboardPane" prefHeight="600.0" prefWidth="1310.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.service.controller.DashboardFormController">
+   <children>
+      <Label alignment="CENTER" layoutX="219.0" prefHeight="79.0" prefWidth="1091.0" text="KULPI VEHICLE SERVICE SENTER">
+         <font>
+            <Font name="Bell MT Bold" size="60.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#8931e0" />
+                  <Stop color="#eb0740" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Pane prefHeight="600.0" prefWidth="219.0" style="-fx-background-color: #9494b8;">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="105.0" layoutX="60.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo/administrator.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutY="109.0" prefHeight="45.0" prefWidth="219.0" text="ADMIN" textFill="WHITE">
+               <font>
+                  <Font name="Stencil" size="32.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnUser" alignment="BOTTOM_LEFT" layoutX="1.0" layoutY="145.0" onAction="#btnUserOnAction" prefHeight="65.0" prefWidth="219.0" style="-fx-background-radius: 20;" text="Users">
+               <ripplerFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#8931e0" />
+                        <Stop color="#eb0740" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/logo/team1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnSupplier" alignment="BOTTOM_LEFT" layoutY="210.0" onAction="#btnSupplierOnAction" prefHeight="65.0" prefWidth="219.0" style="-fx-background-radius: 20;" text="Suppliers">
+               <ripplerFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#8931e0" />
+                        <Stop color="#eb0740" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/logo/supplier.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnEmployee" alignment="BOTTOM_LEFT" layoutY="275.0" onAction="#btnEmployeerOnAction" prefHeight="65.0" prefWidth="219.0" style="-fx-background-radius: 20;" text="Employees">
+               <ripplerFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#8931e0" />
+                        <Stop color="#eb0740" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/logo/team.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnItem" alignment="BOTTOM_LEFT" layoutY="340.0" onAction="#btnItemOnAction" prefHeight="65.0" prefWidth="219.0" style="-fx-background-radius: 20;" text="Items">
+               <ripplerFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#8931e0" />
+                        <Stop color="#eb0740" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/logo/items.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnService" alignment="BOTTOM_LEFT" layoutY="405.0" onAction="#btnServiceOnAction" prefHeight="65.0" prefWidth="219.0" style="-fx-background-radius: 20;" text="Services">
+               <ripplerFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#8931e0" />
+                        <Stop color="#eb0740" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/logo/customer-service.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnPlaceOrder" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutY="470.0" onAction="#btnPlaceOrderOnAction" prefHeight="65.0" prefWidth="219.0" style="-fx-background-radius: 20;" text="Place Order">
+               <ripplerFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#8931e0" />
+                        <Stop color="#eb0740" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnLogout" layoutY="535.0" onAction="#btnLogoutOnAction" prefHeight="65.0" prefWidth="219.0" style="-fx-background-radius: 20;" text="Logout" textFill="WHITE">
+               <ripplerFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#8931e0" />
+                        <Stop color="#eb0740" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <ImageView fitHeight="38.0" fitWidth="48.0" layoutX="14.0" layoutY="484.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo/checkout2.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <AnchorPane fx:id="aPane" layoutX="219.0" layoutY="79.0" prefHeight="521.0" prefWidth="1091.0">
+         <children>
+            <ImageView fitHeight="521.0" fitWidth="1091.0" opacity="0.77" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo/background.jpg" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

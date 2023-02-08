@@ -1,8 +1,6 @@
 package lk.ijse.service.model;
 
-import lk.ijse.service.to.CartDetail;
-import lk.ijse.service.to.Sup_payment;
-import lk.ijse.service.util.CrudUtil;
+import lk.ijse.service.dao.CrudUtil;
 
 import java.sql.SQLException;
 import java.time.LocalDate;

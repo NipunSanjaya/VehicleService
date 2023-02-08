@@ -8,16 +8,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.service.model.EmployeeModel;
-import lk.ijse.service.model.SuppliersModel;
-import lk.ijse.service.to.Employee;
-import lk.ijse.service.to.Services;
-import lk.ijse.service.to.Suppliers;
+import lk.ijse.service.bo.BOFactory;
+import lk.ijse.service.bo.BOType;
+import lk.ijse.service.bo.custom.SuppliersBO;
+import lk.ijse.service.dao.custom.impl.SuppliersDAOImpl;
+import lk.ijse.service.dto.SuppliersDTO;
+import lk.ijse.service.entity.Suppliers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static lk.ijse.service.model.SuppliersModel.add;
+
 
 public class SuppliersFormController {
 
@@ -69,6 +70,8 @@ public class SuppliersFormController {
     @FXML
     private TextField txtEmail;
 
+    SuppliersBO suppliersBO = (SuppliersBO) BOFactory.getBoFactory().getBO(BOType.SUPPLIERS);
+
     public void initialize() throws SQLException, ClassNotFoundException {
         setCellValueFactoryCus();
         setObList();
@@ -84,7 +87,7 @@ public class SuppliersFormController {
     private ObservableList<Suppliers> obList= FXCollections.observableArrayList();
 
     public ObservableList setObList() throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = SuppliersModel.getTableValues();
+        ResultSet resultSet = suppliersBO.getTableValues();
         while (resultSet.next()) {
             obList.add(new Suppliers(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5)));
         }
@@ -106,8 +109,8 @@ public class SuppliersFormController {
 
             new Alert(Alert.AlertType.WARNING,"Some Data Fields Are Empty...!").show();
         }else {
-            suppliers = new Suppliers(sup_id,name,address,contact,email);
-            boolean isAdded = add(suppliers);
+            //suppliers = new Suppliers(sup_id,name,address,contact,email);
+            boolean isAdded = suppliersBO.save(new SuppliersDTO(sup_id,name,address,contact,email));
 
             if (isAdded) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Supplier Added").show();
@@ -136,9 +139,9 @@ public class SuppliersFormController {
 
             new Alert(Alert.AlertType.WARNING,"Some Data Fields Are Empty...!").show();
         }else {
-            Suppliers suppliers = new Suppliers(sup_id);
+            //Suppliers suppliers = new Suppliers(sup_id);
 
-            boolean isDeleted = SuppliersModel.delete(suppliers);
+            boolean isDeleted = suppliersBO.delete(sup_id);
 
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Supplier Deleted").show();
@@ -162,9 +165,9 @@ public class SuppliersFormController {
 
             new Alert(Alert.AlertType.WARNING,"Some Data Fields Are Empty...!").show();
         }else {
-            Suppliers suppliers = new Suppliers(sup_id, name, address, contact, email);
+            //Suppliers suppliers = new Suppliers(sup_id, name, address, contact, email);
 
-            boolean isUpdated = SuppliersModel.update(suppliers);
+            boolean isUpdated = suppliersBO.update(new SuppliersDTO(sup_id, name, address, contact, email));
 
             if (isUpdated){
                 new Alert(Alert.AlertType.CONFIRMATION, "Supplier Updated").show();
@@ -200,7 +203,7 @@ public class SuppliersFormController {
     void txtSupIdOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String sup_id = txtSupId.getText();
 
-        Suppliers suppliers = SuppliersModel.search(sup_id);
+        Suppliers suppliers = suppliersBO.search(sup_id);
 
         if (suppliers != null){
             fillData(suppliers);

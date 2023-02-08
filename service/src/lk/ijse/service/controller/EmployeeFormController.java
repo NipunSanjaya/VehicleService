@@ -8,14 +8,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.service.model.EmployeeModel;
-import lk.ijse.service.to.Employee;
-import lk.ijse.service.view.tm.CustomerTM;
+import lk.ijse.service.bo.BOFactory;
+import lk.ijse.service.bo.BOType;
+import lk.ijse.service.bo.custom.EmployeeBO;
+import lk.ijse.service.dao.custom.impl.EmployeeDAOImpl;
+import lk.ijse.service.dto.EmployeeDTO;
+import lk.ijse.service.entity.Employee;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static lk.ijse.service.model.EmployeeModel.*;
+import static lk.ijse.service.dao.custom.impl.EmployeeDAOImpl.*;
 
 public class EmployeeFormController {
 
@@ -67,6 +70,8 @@ public class EmployeeFormController {
     @FXML
     private TextField txtEmail;
 
+    EmployeeBO employeeBO = (EmployeeBO) BOFactory.getBoFactory().getBO(BOType.EMPLOYEE);
+
     public void initialize() throws SQLException, ClassNotFoundException {
         setCellValueFactoryCus();
         setObList();
@@ -82,7 +87,7 @@ public class EmployeeFormController {
     private ObservableList<Employee> obList= FXCollections.observableArrayList();
 
     public ObservableList setObList() throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = EmployeeModel.getTableValues();
+        ResultSet resultSet = employeeBO.getTableValues();
         while (resultSet.next()) {
             obList.add(new Employee(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5)));
         }
@@ -99,9 +104,9 @@ public class EmployeeFormController {
         String contact = txtContact.getText();
         String email = txtEmail.getText();
 
-        Employee employee = new Employee(emp_id,name,address,contact,email);
+        //Employee employee = new Employee(emp_id,name,address,contact,email);
 
-        boolean isAdded = add(employee);
+        boolean isAdded = employeeBO.add(new EmployeeDTO(emp_id,name,address,contact,email));
 
         if (isAdded){
             new Alert(Alert.AlertType.CONFIRMATION,"Employee Added").show();
@@ -126,11 +131,11 @@ public class EmployeeFormController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-        String emp_id = txtEmpId.getText();
+        String id = txtEmpId.getText();
 
-        Employee employee = new Employee(emp_id);
+       // Employee employee = new Employee(emp_id);
 
-        boolean isDeleted = delete(employee);
+        boolean isDeleted = employeeBO.delete(id);
 
         if (isDeleted){
             new Alert(Alert.AlertType.CONFIRMATION,"Employee Deleted.!").show();
@@ -150,9 +155,9 @@ public class EmployeeFormController {
         String contact = txtContact.getText();
         String email = txtEmail.getText();
 
-        Employee employee = new Employee(emp_id,name,address,contact,email);
+       // Employee employee = new Employee(emp_id,name,address,contact,email);
 
-        boolean isUpdated = update(employee);
+        boolean isUpdated = employeeBO.update(new EmployeeDTO(emp_id,name,address,contact,email));
 
         if (isUpdated){
             new Alert(Alert.AlertType.CONFIRMATION,"Employee Updated.!").show();
@@ -183,7 +188,7 @@ public class EmployeeFormController {
     void txtEmpIdOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String emp_id = txtEmpId.getText();
 
-        Employee employee = EmployeeModel.search(emp_id);
+        EmployeeDTO employee = employeeBO.search(emp_id);
 
         if (employee != null){
             fillData(employee);
@@ -193,7 +198,7 @@ public class EmployeeFormController {
 
     }
 
-    private void fillData(Employee employee) {
+    private void fillData(EmployeeDTO employee) {
         txtEmpId.setText(employee.getEmp_id());
         txtName.setText(employee.getName());
         txtAddress.setText(employee.getAddress());

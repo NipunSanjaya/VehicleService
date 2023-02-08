@@ -8,12 +8,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.service.model.ItemModel;
-import lk.ijse.service.to.Item;
+import lk.ijse.service.bo.BOFactory;
+import lk.ijse.service.bo.BOType;
+import lk.ijse.service.bo.custom.ItemBO;
+import lk.ijse.service.dao.custom.impl.ItemDAOImpl;
+import lk.ijse.service.dto.ItemDTO;
 
 import java.sql.SQLException;
 
-import static lk.ijse.service.model.ItemModel.add;
 
 public class ItemFormController {
 
@@ -59,19 +61,21 @@ public class ItemFormController {
     @FXML
     private JFXButton btnClear;
 
+    ItemBO itemBO = (ItemBO) BOFactory.getBoFactory().getBO(BOType.ITEM);
+
     @FXML
     void btnAddOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String item_code = txtItemCode.getText();
         String name = txtName.getText();
-        String unit_price = txtUnitPrice.getText();
-        String qty_on_hand = txtQtyOnHand.getText();
+        double unit_price = Double.parseDouble(txtUnitPrice.getText());
+        int qty_on_hand = Integer.parseInt(txtQtyOnHand.getText());
 
-        if (item_code.equals("")||name.equals("")||unit_price.equals("")||qty_on_hand.equals("")){
+       /* if (item_code.equals("")||name.equals("")||unit_price.equals("")||qty_on_hand.equals("")){
             new Alert(Alert.AlertType.WARNING,"Some Data Fields Are Empty...!").show();
-        }else {
-            Item item = new Item(item_code, name, Double.parseDouble(unit_price), Integer.parseInt(qty_on_hand));
+        }else {*/
+           // ItemDTO itemDTO = new ItemDTO(item_code, name, Double.parseDouble(unit_price), Integer.parseInt(qty_on_hand));
 
-            boolean isAdded = add(item);
+            boolean isAdded = itemBO.add(new ItemDTO(item_code,name,unit_price,qty_on_hand));
 
             if (isAdded) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Item Added").show();
@@ -80,7 +84,7 @@ public class ItemFormController {
             }
         }
 
-    }
+
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
@@ -98,9 +102,9 @@ public class ItemFormController {
         if (item_code.equals("")){
             new Alert(Alert.AlertType.WARNING,"Some Data Fields Are Empty...!").show();
         }else {
-            Item item = new Item(item_code);
+            //ItemDTO itemDTO = new ItemDTO(item_code);
 
-            boolean isDeleted = ItemModel.delete(item);
+            boolean isDeleted = itemBO.delete(item_code);
 
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Item Deleted.!").show();
@@ -120,9 +124,9 @@ public class ItemFormController {
         if (item_code.equals("")||name.equals("")||unit_price.equals("")||qty_on_hand.equals("")){
             new Alert(Alert.AlertType.WARNING,"Some Data Fields Are Empty...!").show();
         }else {
-            Item item = new Item(item_code, name, Double.parseDouble(unit_price), Integer.parseInt(qty_on_hand));
+            //ItemDTO itemDTO = new ItemDTO(item_code, name, Double.parseDouble(unit_price), Integer.parseInt(qty_on_hand));
 
-            boolean isUpdated = ItemModel.update(item);
+            boolean isUpdated = itemBO.update(new ItemDTO(item_code, name, Double.parseDouble(unit_price), Integer.parseInt(qty_on_hand)));
 
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Item Updated.!").show();
@@ -135,19 +139,19 @@ public class ItemFormController {
     void txtItemCodeOnHand(ActionEvent event) throws SQLException, ClassNotFoundException {
         String item_code = txtItemCode.getText();
 
-        Item item = ItemModel.search(item_code);
+        ItemDTO itemDTO = itemBO.search(item_code);
 
-        if (item != null){
-            fillData(item);
+        if (itemDTO != null){
+            fillData(itemDTO);
         }else{
             txtName.requestFocus();
         }
     }
 
-    private void fillData(Item item) {
-        txtName.setText(item.getName());
-        txtUnitPrice.setText(String.valueOf(item.getUnit_price()));
-        txtQtyOnHand.setText(String.valueOf(item.getQty_on_hand()));
+    private void fillData(ItemDTO itemDTO) {
+        txtName.setText(itemDTO.getName());
+        txtUnitPrice.setText(String.valueOf(itemDTO.getUnit_price()));
+        txtQtyOnHand.setText(String.valueOf(itemDTO.getQty_on_hand()));
     }
 
     @FXML

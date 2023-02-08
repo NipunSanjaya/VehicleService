@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.service.dao.custom.impl.ServiceDAOImpl;
+import lk.ijse.service.entity.Services;
 import lk.ijse.service.model.*;
 import lk.ijse.service.to.*;
 import lk.ijse.service.util.Navigation;
@@ -119,13 +121,13 @@ public class PlaceAppointmentFormController {
     }
 
     private void lordVehicleNumbers(String cus_id) throws SQLException, ClassNotFoundException {
-        ObservableList<String> veh_num = FXCollections.observableArrayList();
-        ArrayList<String> vehicleNum = VehicleModel.lordVehNum(cus_id);
+        /*ObservableList<String> veh_num = FXCollections.observableArrayList();
+        ArrayList<String> vehicleNum = VehicleDAOImpl.lordVehNum(cus_id);
 
         for (String num : vehicleNum) {
             veh_num.add(num);
         }
-        cmbVehicleINum.setItems(veh_num);
+        cmbVehicleINum.setItems(veh_num);*/
     }
 
     private void lordTotal() {
@@ -141,13 +143,13 @@ public class PlaceAppointmentFormController {
     }
 
     private void lordServiceIds(String vehicleType) throws SQLException, ClassNotFoundException {
-        ObservableList<String> ser_id = FXCollections.observableArrayList();
-        ArrayList<String> servicesId = ServiceModel.lordIds(vehicleType);
+        /*ObservableList<String> ser_id = FXCollections.observableArrayList();
+        ArrayList<String> servicesId = ServiceDAOImpl.lordIds(vehicleType);
 
         for (String id : servicesId) {
             ser_id.add(id);
         }
-        cmbServiceId.setItems(ser_id);
+        cmbServiceId.setItems(ser_id);*/
     }
 
     private void lordDate() {
@@ -155,13 +157,13 @@ public class PlaceAppointmentFormController {
     }
 
     private void lordCusIds() throws SQLException, ClassNotFoundException {
-        ObservableList<String> cus_id = FXCollections.observableArrayList();
-        ArrayList<String> customerId = CustomerModel.lordIds();
+     /*   ObservableList<String> cus_id = FXCollections.observableArrayList();
+        ArrayList<String> customerId = CustomerDAOImpl.lordIds();
 
         for (String id : customerId) {
             cus_id.add(id);
         }
-        cmbCusId.setItems(cus_id);
+        cmbCusId.setItems(cus_id);*/
     }
 
     private void lordAppointmentId() throws SQLException, ClassNotFoundException {
@@ -251,20 +253,20 @@ public class PlaceAppointmentFormController {
 
     @FXML
     void cmbCusIdOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-        String cus_id = String.valueOf(cmbCusId.getValue());
+    /*    String cus_id = String.valueOf(cmbCusId.getValue());
         lordVehicleNumbers(cus_id);
 
-        Customer customer = CustomerModel.search(cus_id);
+        Customer customer = CustomerDAOImpl.search(cus_id);
         lblCusName.setText(customer.getName());
-
+*/
     }
 
     @FXML
     void cmbServiceIdOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-        String ser_id = String.valueOf(cmbServiceId.getValue());
-        Services services = ServiceModel.search(ser_id);
+        /*String ser_id = String.valueOf(cmbServiceId.getValue());
+        Services services = ServiceDAOImpl.search(ser_id);
         lblServiceName.setText(services.getSer_name());
-        lblPrice.setText(String.valueOf(services.getPrice()));
+        lblPrice.setText(String.valueOf(services.getPrice()));*/
     }
 
     @FXML

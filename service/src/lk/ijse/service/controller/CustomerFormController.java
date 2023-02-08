@@ -7,17 +7,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lk.ijse.service.model.CustomerModel;
-import lk.ijse.service.to.Customer;
-import lk.ijse.service.util.CrudUtil;
+import lk.ijse.service.bo.BOFactory;
+import lk.ijse.service.bo.BOType;
+import lk.ijse.service.bo.custom.CustomerBO;
+import lk.ijse.service.dao.custom.impl.CustomerDAOImpl;
+import lk.ijse.service.dto.CustomerDTO;
+import lk.ijse.service.entity.Customer;
 import lk.ijse.service.view.tm.CustomerTM;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static lk.ijse.service.model.CustomerModel.*;
-
 public class CustomerFormController {
+    CustomerBO customerBO =(CustomerBO) BOFactory.getBoFactory().getBO(BOType.CUSTOMER);
+
     public void initialize() throws SQLException, ClassNotFoundException {
         setCellValueFactoryCus();
         setObList();
@@ -33,7 +36,7 @@ public class CustomerFormController {
     private ObservableList<CustomerTM> obList= FXCollections.observableArrayList();
 
     public ObservableList setObList() throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CustomerModel.getTableValues();
+        ResultSet resultSet = customerBO.getTableValues();
         while (resultSet.next()) {
             obList.add(new CustomerTM(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5)));
         }
@@ -95,10 +98,10 @@ public class CustomerFormController {
         String contact = txtContact.getText();
         String email = txtEmail.getText();
 
-        Customer customer = new Customer(cus_id,name,address,contact,email);
+       // Customer customer = new Customer(cus_id,name,address,contact,email);
 
 
-        boolean   isAdded = save(customer);
+        boolean   isAdded = customerBO.saveCustomer(new CustomerDTO(cus_id,name,address,contact,email));
 
         if (isAdded){
             new Alert(Alert.AlertType.CONFIRMATION,"Customer Added").show();
@@ -121,9 +124,9 @@ public class CustomerFormController {
     @FXML
     void btnDeleteOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String cus_id= txtCusId.getText();
-        Customer customer = new Customer(cus_id);
+      //  Customer customer = new Customer(cus_id);
 
-        boolean isDeleted = delete(customer);
+        boolean isDeleted = customerBO.delete(cus_id);
         if (isDeleted){
             new Alert(Alert.AlertType.CONFIRMATION,"Customer Deleted.!").show();
         }else {
@@ -141,9 +144,9 @@ public class CustomerFormController {
         String contact = txtContact.getText();
         String email = txtEmail.getText();
 
-        Customer customer = new Customer(cus_id,name, address, contact, email);
+        //Customer customer = new Customer(cus_id,name, address, contact, email);
 
-        boolean isUpdated = update(customer);
+        boolean isUpdated = customerBO.update(new CustomerDTO(cus_id,name, address, contact, email));
 
         if (isUpdated){
             new Alert(Alert.AlertType.CONFIRMATION,"Customer Updated.!").show();
@@ -157,7 +160,8 @@ public class CustomerFormController {
     void txtCusIdOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String cus_id = txtCusId.getText();
 
-        Customer customer = CustomerModel.search(cus_id);
+        CustomerDTO customer = customerBO.searchCustomer(cus_id);
+
 
         if (customer != null){
             fillData(customer);
@@ -187,7 +191,7 @@ public class CustomerFormController {
         txtAddress.requestFocus();
     }
 
-    private void fillData(Customer customer) {
+    private void fillData(CustomerDTO customer) {
         txtCusId.setText(customer.getCus_id());
         txtName.setText(customer.getName());
         txtAddress.setText(customer.getAddress());

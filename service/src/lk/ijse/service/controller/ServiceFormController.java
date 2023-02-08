@@ -7,8 +7,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.service.model.ServiceModel;
-import lk.ijse.service.to.Services;
+import lk.ijse.service.bo.BOFactory;
+import lk.ijse.service.bo.BOType;
+import lk.ijse.service.bo.custom.ServiceBO;
+import lk.ijse.service.dao.custom.impl.ServiceDAOImpl;
+import lk.ijse.service.dto.ServicesDTO;
+import lk.ijse.service.entity.Services;
 
 import java.sql.SQLException;
 
@@ -59,6 +63,8 @@ public class ServiceFormController {
     @FXML
     private JFXButton btnClear;
 
+    ServiceBO serviceBO = (ServiceBO) BOFactory.getBoFactory().getBO(BOType.SERVICES);
+
     ObservableList ser_type = FXCollections.observableArrayList();
     ObservableList veh_type = FXCollections.observableArrayList();
 
@@ -87,9 +93,9 @@ public class ServiceFormController {
         if (ser_id.equals("")||service_type.equals("")||vehicle_type.equals("")||price.equals("")){
             new Alert(Alert.AlertType.WARNING,"Some Data Fields Are Empty...!").show();
         }else {
-            Services services = new Services(ser_id, service_type, vehicle_type, Double.parseDouble(price));
+            //Services services = new Services(ser_id, service_type, vehicle_type, Double.parseDouble(price));
 
-            boolean isAdded = ServiceModel.add(services);
+            boolean isAdded = serviceBO.save(new ServicesDTO(ser_id, service_type, vehicle_type, Double.parseDouble(price)));
 
             if (isAdded){
                 new Alert(Alert.AlertType.CONFIRMATION,"Services Added ").show();
@@ -115,8 +121,8 @@ public class ServiceFormController {
         if (ser_id.equals("")){
             new Alert(Alert.AlertType.WARNING,"Some Data Fields Are Empty...!").show();
         }else {
-            Services services = new Services(ser_id);
-            boolean isDeleted = ServiceModel.delete(services);
+            //Services services = new Services(ser_id);
+            boolean isDeleted = serviceBO.delete(ser_id);
 
             if (isDeleted){
                 new Alert(Alert.AlertType.CONFIRMATION,"Services Deleted ").show();
@@ -137,9 +143,9 @@ public class ServiceFormController {
         if (ser_id.equals("")||name.equals("")||type.equals("")||price.equals("")){
             new Alert(Alert.AlertType.WARNING,"Some Data Fields Are Empty...!").show();
         }else {
-            Services services = new Services(ser_id, name, type, Double.parseDouble(price));
+            //Services services = new Services(ser_id, name, type, Double.parseDouble(price));
 
-            boolean isUpdated = ServiceModel.update(services);
+            boolean isUpdated = serviceBO.update(new ServicesDTO(ser_id, name, type, Double.parseDouble(price)));
 
             if (isUpdated){
                 new Alert(Alert.AlertType.CONFIRMATION,"Services Updated ").show();
@@ -163,7 +169,7 @@ public class ServiceFormController {
     void txtServiceIdOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String ser_id = txtServiceId.getText();
 
-        Services services = ServiceModel.search(ser_id);
+        Services services = serviceBO.search(ser_id);
 
         if (services != null){
             filldata(services);

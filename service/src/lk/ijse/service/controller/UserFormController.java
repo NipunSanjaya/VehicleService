@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.service.model.EmployeeModel;
+import lk.ijse.service.dao.custom.impl.EmployeeDAOImpl;
 import lk.ijse.service.model.UserModel;
 import lk.ijse.service.to.User;
 
@@ -105,12 +105,12 @@ public class UserFormController {
     ObservableList<String> roles = FXCollections.observableArrayList();
 
     private  void lordEmp_ids () throws SQLException, ClassNotFoundException {
-        ArrayList<String> employeeList = EmployeeModel.loadEmployeeIds();
+        /*ArrayList<String> employeeList = EmployeeDAOImpl.loadEmployeeIds();
 
         for (String ids : employeeList) {
             emp_ids.add(ids);
         }
-        cmbEmpId.setItems(emp_ids);
+        cmbEmpId.setItems(emp_ids);*/
     }
 
     private void lordUserRole(){

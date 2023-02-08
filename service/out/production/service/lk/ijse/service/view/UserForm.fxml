@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="userPane" prefHeight="521.0" prefWidth="1091.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.service.controller.UserFormController">
+   <children>
+      <Label layoutX="459.0" layoutY="30.0" text="User Form" textFill="#180fd9">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="48.0" layoutY="129.0" text="User Name">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <TextField fx:id="txtUserName" layoutX="184.0" layoutY="124.0" onAction="#txtUserNameOnAction" prefHeight="31.0" prefWidth="250.0" promptText="Enter User Name" />
+      <Label layoutX="48.0" layoutY="288.0" text="Role">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <Label layoutX="48.0" layoutY="181.0" text="Emp ID">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <Label layoutX="48.0" layoutY="343.0" text="Password">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <TextField fx:id="txtPassword" layoutX="184.0" layoutY="338.0" onAction="#txtPasswordOnAction" prefHeight="31.0" prefWidth="250.0" promptText="Enter Password" />
+      <Label layoutX="48.0" layoutY="399.0" text="Confirm Password">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <TextField fx:id="txtConfirmPassword" layoutX="184.0" layoutY="394.0" onAction="#txtConfirmPasswordOnAction" prefHeight="31.0" prefWidth="250.0" promptText="Re Enter Password" />
+      <TableView fx:id="tblUser" layoutX="462.0" layoutY="124.0" prefHeight="363.0" prefWidth="606.0">
+        <columns>
+          <TableColumn fx:id="colUser_name" prefWidth="112.0" text="User Name" />
+          <TableColumn fx:id="colEmpId" prefWidth="82.0" text="Emp ID" />
+            <TableColumn fx:id="colEmail" prefWidth="292.0" text="Email" />
+            <TableColumn fx:id="colRole" prefWidth="119.0" text="Role" />
+        </columns>
+      </TableView>
+      <Label layoutX="48.0" layoutY="235.0" text="Email">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <TextField fx:id="txtEmail" layoutX="184.0" layoutY="230.0" onAction="#txtEmailOnAction" prefHeight="31.0" prefWidth="250.0" promptText="Enter Email" />
+      <ComboBox fx:id="cmbEmpId" layoutX="184.0" layoutY="176.0" onAction="#cmbEmpIdOnAction" prefHeight="31.0" prefWidth="250.0" promptText="Select Employee ID">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
+      <ComboBox fx:id="cmbRole" layoutX="184.0" layoutY="283.0" onAction="#cmbRoleOnAction" prefHeight="31.0" prefWidth="250.0" promptText="Select Role">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
+      <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="48.0" layoutY="449.0" onAction="#btnAddOnAction" prefHeight="38.0" prefWidth="83.0" style="-fx-background-color: #000080;" text="Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <ripplerFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#6140e4" />
+                  <Stop color="#eb0f29" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </ripplerFill>
+      </JFXButton>
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="152.0" layoutY="449.0" onAction="#btnDeleteOnAction" prefHeight="38.0" prefWidth="83.0" style="-fx-background-color: #ff0000;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <ripplerFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#6140e4" />
+                  <Stop color="#eb0f29" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </ripplerFill>
+      </JFXButton>
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="256.0" layoutY="449.0" onAction="#btnUpdateOnAction" prefHeight="38.0" prefWidth="83.0" style="-fx-background-color: #00FF00;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <ripplerFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#6140e4" />
+                  <Stop color="#eb0f29" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </ripplerFill>
+      </JFXButton>
+      <JFXButton fx:id="btnClear" buttonType="RAISED" layoutX="360.0" layoutY="449.0" onAction="#btnClearOnAction" prefHeight="38.0" prefWidth="83.0" style="-fx-background-color: #00FFFF;" text="Clear" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <ripplerFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#6140e4" />
+                  <Stop color="#eb0f29" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </ripplerFill>
+      </JFXButton>
+   </children>
+</AnchorPane>

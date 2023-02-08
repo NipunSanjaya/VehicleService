@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="paneVehicle" prefHeight="521.0" prefWidth="1091.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.service.controller.VehicleFormController">
+   <children>
+      <Label layoutX="449.0" layoutY="30.0" prefHeight="53.0" prefWidth="231.0" text="Vehicle Form" textFill="#180fd9">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="48.0" layoutY="129.0" text="Vehicle Number">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <TextField fx:id="txtVehicleNum" layoutX="184.0" layoutY="124.0" onAction="#txtVehicleNumOnAction" prefHeight="31.0" prefWidth="250.0" promptText="ABC-1234" />
+      <Label layoutX="48.0" layoutY="257.0" text="Type">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <Label layoutX="48.0" layoutY="321.0" text="Vehicle Name">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <TextField fx:id="txtVehicleName" layoutX="184.0" layoutY="316.0" onAction="#txtVehicleNameOnAction" prefHeight="31.0" prefWidth="250.0" promptText="TYOTA, YAMAHA, ZUSUKI,.." />
+      <Label layoutX="48.0" layoutY="194.0" text="Cus ID">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <TableView fx:id="tblVehicle" layoutX="462.0" layoutY="124.0" prefHeight="321.0" prefWidth="606.0">
+        <columns>
+          <TableColumn fx:id="tblVehicleNum" prefWidth="126.0" text="Vehicle Number" />
+          <TableColumn fx:id="tblVehicleName" prefWidth="237.0" text="Vehicle Name" />
+            <TableColumn fx:id="tblType" prefWidth="122.0" text="Type" />
+            <TableColumn fx:id="tblCusId" prefWidth="120.0" text="Cus ID" />
+        </columns>
+      </TableView>
+      <ComboBox fx:id="cmbType" layoutX="184.0" layoutY="252.0" onAction="#cmbTypeOnAction" prefHeight="31.0" prefWidth="250.0" promptText="Select Vehicle Type" />
+      <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="39.0" layoutY="405.0" onAction="#btnAddOnAction" prefHeight="38.0" prefWidth="83.0" style="-fx-background-color: #000080;" text="Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <ripplerFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#1d0fd1" />
+                  <Stop color="#e80f1d" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </ripplerFill>
+      </JFXButton>
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="143.0" layoutY="405.0" onAction="#btnDeleteOnAction" prefHeight="38.0" prefWidth="83.0" style="-fx-background-color: #ff0000;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <ripplerFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#1d0fd1" />
+                  <Stop color="#e80f1d" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </ripplerFill>
+      </JFXButton>
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="247.0" layoutY="405.0" onAction="#btnUpdateOnAction" prefHeight="38.0" prefWidth="83.0" style="-fx-background-color: #00FF00;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <ripplerFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#1d0fd1" />
+                  <Stop color="#e80f1d" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </ripplerFill>
+      </JFXButton>
+      <JFXButton fx:id="btnClear" buttonType="RAISED" layoutX="351.0" layoutY="405.0" onAction="#btnClearOnAction" prefHeight="38.0" prefWidth="83.0" style="-fx-background-color: #00FFFF;" text="Clear" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <ripplerFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#1d0fd1" />
+                  <Stop color="#e80f1d" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </ripplerFill>
+      </JFXButton>
+      <ComboBox fx:id="cmbCusId" layoutX="184.0" layoutY="189.0" onAction="#cmbCusIdOnAction" prefHeight="31.0" prefWidth="250.0" promptText="Select Customer ID" />
+   </children>
+</AnchorPane>

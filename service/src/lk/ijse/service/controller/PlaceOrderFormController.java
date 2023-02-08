@@ -10,16 +10,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.service.dao.custom.impl.SuppliersDAOImpl;
 import lk.ijse.service.model.*;
 import lk.ijse.service.to.CartDetail;
 import lk.ijse.service.to.PlaceOrder;
-import lk.ijse.service.to.Suppliers;
 import lk.ijse.service.util.Navigation;
 import lk.ijse.service.util.Routes;
 import lk.ijse.service.view.tm.PlaceOrderTM;
 
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -118,9 +117,9 @@ public class PlaceOrderFormController {
     }
 
     private void loadItemCodes() {
-        ObservableList<String> itemCodes = FXCollections.observableArrayList();
+       /* ObservableList<String> itemCodes = FXCollections.observableArrayList();
         try {
-            ArrayList<String> iCodes = ItemModel.itemCodes();
+            ArrayList<String> iCodes = ItemDAOImpl.itemCodes();
 
             for (String id : iCodes) {
                 itemCodes.add(id);
@@ -130,13 +129,13 @@ public class PlaceOrderFormController {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     private void lordSupplierId() {
-        ObservableList<String> sup_id = FXCollections.observableArrayList();
+        /*ObservableList<String> sup_id = FXCollections.observableArrayList();
         try {
-            ArrayList<String> supplierId = SuppliersModel.supId();
+            ArrayList<String> supplierId = SuppliersDAOImpl.supId();
 
             for (String id : supplierId) {
                 sup_id.add(id);
@@ -146,7 +145,7 @@ public class PlaceOrderFormController {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
     }
@@ -255,22 +254,22 @@ public class PlaceOrderFormController {
 
     @FXML
     void cmbItemCodeOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-        String item_code = String.valueOf(cmbItemCode.getValue());
-        ResultSet list = ItemModel.itemDetails(item_code);
+  /*      String item_code = String.valueOf(cmbItemCode.getValue());
+        ResultSet list = ItemDAOImpl.itemDetails(item_code);
 
         if (list.next()){
             lblItemName.setText(list.getString(1));
             lblUnitPrice.setText(String.valueOf(list.getDouble(2)));
             lblQtyOnHand.setText(String.valueOf(list.getInt(3)));
         }
-        txtQty.requestFocus();
+        txtQty.requestFocus();*/
     }
 
     @FXML
     void cmbSupIdOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-        String sup_id = String.valueOf(cmbSupId.getValue());
-        lblSupName.setText(SuppliersModel.supName(sup_id));
-        cmbItemCode.requestFocus();
+       /* String sup_id = String.valueOf(cmbSupId.getValue());
+        lblSupName.setText(SuppliersDAOImpl.supName(sup_id));
+        cmbItemCode.requestFocus();*/
     }
 
     @FXML
